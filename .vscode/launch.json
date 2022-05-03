@@ -1,0 +1,47 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-msedge",
+            "request": "launch",
+            "name": "Debug Edge",
+            "cleanUp": "onlyTab",
+            "url": "http://localhost:8888",
+            "webRoot": "${workspaceFolder}/output",
+            "preLaunchTask": "Serve HTTP"
+        },
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Debug Chrome",
+            "cleanUp": "onlyTab",
+            "url": "http://localhost:8888",
+            "webRoot": "${workspaceFolder}/output",
+            "preLaunchTask": "Serve HTTP"
+        },
+        {
+            "name": "Debug Functions",
+            "type": "node",
+            "request": "attach",
+            "port": 9998,
+            "skipFiles": ["<node_internals>/**"],
+            "outFiles": ["${workspaceFolder}/.netlify/functions-serve/**/*.js"],
+            "preLaunchTask": "Serve HTTP"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Debug Edge + Functions",
+            "configurations": [ "Debug Functions", "Debug Edge" ],
+            "stopAll": true
+        },
+        {
+            "name": "Debug Chrome + Functions",
+            "configurations": [ "Debug Functions", "Debug Chrome" ],
+            "stopAll": true
+        }
+    ]
+}
